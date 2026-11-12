@@ -113,9 +113,9 @@ def write_schema_dot(results: List[TableResult], rels: List[Relation], keys: Dic
                      stem: str = "schema") -> Optional[str]:
     """Graphviz schema diagram. keys_only=True keeps key columns only, for print at page width."""
     lines = ["digraph schema {", f'  graph [rankdir=LR, splines=true, nodesep={0.2 if keys_only else 0.35}, '
-             f'ranksep={0.55 if keys_only else 0.9}, fontname="{font}"];',
-             f'  node [shape=plain, fontname="{font}", fontsize=9];',
-             f'  edge [fontname="{font}", fontsize=8, color="black", penwidth=0.7, arrowsize=0.6];']
+             f'ranksep={0.4 if keys_only else 0.9}, fontname="{font}"];',
+             f'  node [shape=plain, fontname="{font}", fontsize={12 if keys_only else 9}];',
+             f'  edge [fontname="{font}", fontsize={11 if keys_only else 8}, color="black", penwidth=0.7, arrowsize=0.6];']
     linked_cols = {(x.child_table, x.child_column) for x in rels}
     for r in results:
         if r.error:
